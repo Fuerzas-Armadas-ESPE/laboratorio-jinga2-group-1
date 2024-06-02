@@ -1,24 +1,86 @@
-{% extends "base.html" %}
-{% block content %}
-  <h2>Lista de Productos</h2>
-  <a href="{% url 'crear_producto' %}">Crear Producto</a>
-  <table>
-    <tr>
-      <th>Nombre</th>
-      <th>Precio</th>
-      <th>Cantidad</th>
-      <th>Acciones</th>
-    </tr>
-    {% for producto in productos %}
-    <tr>
-      <td>{{ producto.nombre }}</td>
-      <td>{{ producto.precio }}</td>
-      <td>{{ producto.cantidad }}</td>
-      <td>
-        <a href="{% url 'editar_producto' producto.pk %}">Editar</a>
-        <a href="{% url 'eliminar_producto' producto.pk %}">Eliminar</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Sitio Web</title>
+    <style>
+        /* Estilo para el botón */
+ /* Estilo para el botón */
+      .btn {
+          display: inline-block;
+          padding: 8px 16px;
+          text-align: center;
+          text-decoration: none;
+          background-color: #007bff; /* Cambiado a azul */
+          color: #0919ee;
+          border: 2px;
+          border-radius: 4px;
+          cursor: pointer;
+      }
+
+      /* Estilo para el botón de editar */
+      .btn-editar {
+          background-color: #007bff; /* Cambiado a azul */
+      }
+
+      /* Estilo para el botón de eliminar */
+      .btn-eliminar {
+          background-color: #007bff; /* Cambiado a azul */
+      }
+
+
+        /* Estilo para la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+  {% extends "base.html" %}
+
+  {% block content %}
+    <h2>Lista de Productos</h2>
+    <a href="{% url 'crear_producto' %}" class="btn">Crear Producto</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for producto in productos %}
+        <tr>
+          <td>{{ producto.nombre }}</td>
+          <td>{{ producto.precio }}</td>
+          <td>{{ producto.cantidad }}</td>
+          <td>
+            <a href="{% url 'editar_producto' producto.pk %}" class="btn btn-editar">Editar</a>
+            <a href="{% url 'eliminar_producto' producto.pk %}" class="btn btn-eliminar">Eliminar</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endblock %}
+  
+  
+</body>
+</html>
+
+
